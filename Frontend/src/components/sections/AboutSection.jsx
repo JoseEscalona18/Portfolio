@@ -3,9 +3,8 @@ import { User, Code2, Sparkles, Coffee } from 'lucide-react';
 import { staggerContainer, fadeUp } from '../../utils/animations';
 
 const values = [
-  { icon: Code2, title: 'Clean Code', description: 'Escribimos código estructurado, mantenible y escalable pensando a futuro.' },
-  { icon: Sparkles, title: 'Pixel Perfect', description: 'Atención obsesiva a los detalles de UI y transiciones fluidas.' },
-  { icon: User, title: 'Accesibilidad', description: 'Construimos interfaces inclusivas para todos los usuarios (a11y).' },
+  { icon: Code2, title: 'Código Calable', description: 'Escribimos código estructurado, mantenible y escalable pensando a futuro.' },
+  { icon: Sparkles, title: 'Alta Disponibilidad', description: 'Contamos con alta disponibilidad y conocimiento para levantar tus proyectos.' },
 ];
 
 const AboutSection = () => {
@@ -27,26 +26,20 @@ const AboutSection = () => {
             {/* Left Column: Bio & Stats */}
             <motion.div variants={fadeUp} className="space-y-6">
               <p className="text-lg text-text-muted leading-relaxed">
-                Somos un grupo multidisciplinario de Ingenieros. Nuestra pasión es tender el puente perfecto entre un diseño sofisticado y la ingeniería pura, transformando conceptos en productos digitales robustos.
+                Somos un grupo multidisciplinario. Nuestra pasión es transformar conceptos en productos digitales.
               </p>
               <p className="text-lg text-text-muted leading-relaxed">
-                Creemos firmemente que el código es diseño. No se trata solo de hacer que los sistemas funcionen, sino de construir infraestructuras que respiren y se sientan premium para el usuario, manteniendo arquitecturas impecables.
+                No se trata solo de hacer que los sistemas funcionen, sino de construir infraestructuras que respiren y se sientan premium para el usuario, manteniendo arquitecturas impecables.
               </p>
-              
+
               <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="text-4xl font-display font-bold text-white">8+</h4>
+                  <h4 className="text-4xl font-display font-bold text-white">4+</h4>
                   <p className="text-sm text-text-muted mt-1">Años experiencia</p>
                 </div>
                 <div>
-                  <h4 className="text-4xl font-display font-bold text-white">50+</h4>
+                  <h4 className="text-4xl font-display font-bold text-white">10+</h4>
                   <p className="text-sm text-text-muted mt-1">Proyectos finales</p>
-                </div>
-                <div>
-                  <h4 className="text-4xl font-display font-bold text-primary flex items-center">
-                    <Coffee className="h-8 w-8 mr-2" />
-                  </h4>
-                  <p className="text-sm text-text-muted mt-1">Cafés tomados</p>
                 </div>
               </div>
             </motion.div>
@@ -56,8 +49,8 @@ const AboutSection = () => {
               {values.map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <motion.div 
-                    key={idx} 
+                  <motion.div
+                    key={idx}
                     variants={fadeUp}
                     className="glass-card p-6 rounded-2xl flex gap-4 hover:-translate-y-1 transition-transform"
                   >

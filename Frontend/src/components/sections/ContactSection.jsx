@@ -14,6 +14,7 @@ import { teamMembers } from '../../data/team';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
+  contact: z.string().min(2, 'El número debe tener al menos 2 caracteres'),
   email: z.string().email('Ingresa un correo válido'),
   subject: z.string().min(5, 'El asunto debe ser más descriptivo'),
   message: z.string().min(10, 'El mensaje es demasiado corto'),
@@ -25,6 +26,7 @@ const socialLinks = [
 
 const ContactSection = () => {
   const [formStatus, setFormStatus] = useState('idle'); // idle, loading, success, error
+  const [responseMessage, setResponseMessage] = useState('');
 
   const {
     register,
@@ -37,18 +39,48 @@ const ContactSection = () => {
 
   const onSubmit = async (data) => {
     setFormStatus('loading');
+    setResponseMessage('');
 
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Form data submitted:', data);
+      const response = await fetch('https://n8n.holanet.com.ve/webhook/c9b04999-241d-4fe8-9943-7178cc68f446', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP Status ${response.status}`);
+      }
+
+      const responseText = await response.text();
+      let finalMessage = responseText;
+
+      try {
+        const json = JSON.parse(responseText);
+        finalMessage = json.message || json.response || JSON.stringify(json);
+      } catch (e) {
+        // Mantiene texto original si no es formato objeto JSON
+      }
+
+      setResponseMessage(finalMessage);
       setFormStatus('success');
       reset();
 
-      setTimeout(() => setFormStatus('idle'), 5000);
+      setTimeout(() => {
+        setFormStatus('idle');
+        setResponseMessage('');
+      }, 8000);
     } catch (err) {
+      console.error('Error enviando formulario:', err);
+      setResponseMessage(err.message || 'Error de conexión con el webhook.');
       setFormStatus('error');
-      setTimeout(() => setFormStatus('idle'), 5000);
+
+      setTimeout(() => {
+        setFormStatus('idle');
+        setResponseMessage('');
+      }, 8000);
     }
   };
 
@@ -77,21 +109,6 @@ const ContactSection = () => {
             </div>
 
             <div className="flex flex-col gap-6 w-full max-w-sm">
-              <div className="glass-card p-6 rounded-2xl">
-                <h3 className="text-xl font-bold font-display text-white mb-6">El Equipo</h3>
-                <div className="flex flex-col gap-4">
-                  {teamMembers.map((member) => (
-                    <div key={member.id} className="flex items-center gap-4 p-2 hover:bg-white/5 rounded-xl transition-colors">
-                      <img src={member.imageUrl} alt={member.name} className="w-12 h-12 rounded-full object-cover border-2 border-primary/50" />
-                      <div>
-                        <h4 className="font-bold text-white text-sm">{member.name}</h4>
-                        <p className="text-xs text-text-muted">{member.role}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               <div className="glass-card p-6 rounded-2xl">
                 <h3 className="text-xl font-bold font-display text-white mb-6">Conecta con nosotros</h3>
                 <div className="flex flex-col gap-4">
@@ -122,16 +139,26 @@ const ContactSection = () => {
             <h3 className="text-2xl font-bold font-display text-white mb-6">Envíame un mensaje</h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+              <div className="space-y-1">
+                <label htmlFor="name" className="text-sm font-medium text-text-main ml-1">Nombre</label>
+                <Input
+                  id="name"
+                  placeholder="Tu nombre completo"
+                  {...register('name')}
+                  error={errors.name}
+                />
+                {errors.name && <p className="text-red-400 text-xs mt-1 ml-1">{errors.name.message}</p>}
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-1">
-                  <label htmlFor="name" className="text-sm font-medium text-text-main ml-1">Nombre</label>
+                  <label htmlFor="contact" className="text-sm font-medium text-text-main ml-1">Número</label>
                   <Input
-                    id="name"
-                    placeholder="Tu nombre completo"
-                    {...register('name')}
-                    error={errors.name}
+                    id="contact"
+                    placeholder="Tu número de teléfono"
+                    {...register('contact')}
+                    error={errors.contact}
                   />
-                  {errors.name && <p className="text-red-400 text-xs mt-1 ml-1">{errors.name.message}</p>}
+                  {errors.contact && <p className="text-red-400 text-xs mt-1 ml-1">{errors.contact.message}</p>}
                 </div>
 
                 <div className="space-y-1">
@@ -194,15 +221,21 @@ const ContactSection = () => {
               {/* Status Messages */}
               {formStatus === 'success' && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 bg-secondary/10 border border-secondary/20 rounded-xl flex items-start gap-3 mt-4">
-                  <CheckCircle2 className="text-secondary shrink-0" />
-                  <p className="text-sm text-secondary font-medium">¡Mensaje enviado con éxito! Te responderé lo más pronto posible.</p>
+                  <CheckCircle2 className="text-secondary shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm text-secondary font-bold mb-1">¡Mensaje enviado con éxito!</p>
+                    {responseMessage && <p className="text-sm text-secondary/90 leading-relaxed">{responseMessage}</p>}
+                  </div>
                 </motion.div>
               )}
 
               {formStatus === 'error' && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-3 mt-4">
-                  <AlertCircle className="text-red-500 shrink-0" />
-                  <p className="text-sm text-red-500 font-medium">Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.</p>
+                  <AlertCircle className="text-red-500 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm text-red-500 font-bold mb-1">Hubo un error al enviar el mensaje.</p>
+                    {responseMessage && <p className="text-sm text-red-500/90 leading-relaxed">{responseMessage}</p>}
+                  </div>
                 </motion.div>
               )}
             </form>

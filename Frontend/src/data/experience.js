@@ -30,7 +30,7 @@ export const experiences = [
     address: 'Av. Bolivar con Calle 5, Edif. Macova planta baja, Local S/N, Valera, Trujillo, Venezuela',
     companyLogo: '/public/Compañias/Holanet.jpg',
     role: 'Ingenieros en Tecnologías de la Información (TI)',
-    period: '2023 - Presente',
+    period: '',
     description: 'Desarrollo de infraestructuras críticas, incluyendo la interconexión con el sistema Biopago del Banco de Venezuela. Lideramos un ecosistema de Backend robusto y de microservicios con altísima disponibilidad para facturación y reporte de pagos de miles de clientes. Trabajamos con automatización de servicios, desarrollo de software empresarial y soluciones con IA.',
     technologies: [
       { name: 'Node.js', icon: FaNodeJs, color: 'text-[#339933]' },

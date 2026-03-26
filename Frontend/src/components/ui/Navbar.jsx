@@ -59,7 +59,7 @@ const Navbar = () => {
               onClick={(e) => { e.preventDefault(); scrollToSection('/#hero'); }}
               className="text-2xl font-display font-bold text-white tracking-tighter hover:text-primary transition-colors z-50 relative"
             >
-              Portfolio<span className="text-primary">.</span>
+              Nerds<span className="text-primary">.</span>
             </a>
 
             {/* Desktop Nav */}
