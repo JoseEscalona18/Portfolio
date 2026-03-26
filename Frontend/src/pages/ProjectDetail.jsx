@@ -73,11 +73,30 @@ const ProjectDetail = () => {
             <motion.div variants={fadeUp} className="mb-16">
               <h3 className="text-2xl font-display font-bold mb-6">Galería del Proyecto</h3>
               <div className="grid grid-cols-1 space-y-8">
-                {project.gallery.map((img, idx) => (
-                  <div key={idx} className="rounded-2xl overflow-hidden border border-white/10 glass-card">
-                    <img src={img} alt={`Captura ${idx + 1}`} className="w-full h-auto object-cover" loading="lazy" />
-                  </div>
-                ))}
+                {project.gallery.map((mediaUrl, idx) => {
+                  const isVideo = mediaUrl.match(/\.(mp4|webm)$/i);
+                  return (
+                    <div key={idx} className="rounded-2xl overflow-hidden border border-white/10 glass-card relative bg-black/20 flex justify-center">
+                      {isVideo ? (
+                        <video 
+                          src={mediaUrl} 
+                          controls 
+                          className="w-full h-auto object-contain outline-none max-h-[80vh]" 
+                          preload="metadata" 
+                        >
+                          Tu navegador no soporta la reproducción de videos.
+                        </video>
+                      ) : (
+                        <img 
+                          src={mediaUrl} 
+                          alt={`Captura ${idx + 1}`} 
+                          className="w-full h-auto object-cover" 
+                          loading="lazy" 
+                        />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
           )}

@@ -25,6 +25,7 @@ export const projects = [
     tags: ['Frontend', 'Diseño Web', 'Tailwind CSS', 'React', 'Backend'],
     imageUrl: '/WebHolanet/Holanetcomve.png',
     gallery: [
+      '/WebHolanet/EjmHolanetWeb.mp4',
       '/WebHolanet/Holanetcomve.png',
       '/WebHolanet/consultarsaldo.png',
       '/WebHolanet/detallefacturacion.png',
@@ -44,6 +45,7 @@ export const projects = [
     tags: ['React', 'Node.js', 'Biopago API', 'Tailwind CSS'],
     imageUrl: '/BiopagoBDV/Biopago.png',
     gallery: [
+      '/BiopagoBDV/EjmBiopago.mp4',
       '/BiopagoBDV/metodoPago.png',
       '/BiopagoBDV/metodoAutenticacion.png',
       '/BiopagoBDV/CodigoAutenticacion.png',
@@ -62,6 +64,8 @@ export const projects = [
     tags: ['Express', 'API BDV', 'PostgreSQL', 'React', 'MongoDB'],
     imageUrl: '/PagoMovil/pagoMovilAuto.png',
     gallery: [
+      '/PagoMovil/EjmPagoMA.mp4',
+      '/PagoMovil/EjmPagoMM.mp4',
       '/PagoMovil/pagoMovilAuto.png',
       '/PagoMovil/pagoMovilManual.png',
       '/PagoMovil/pagoMovilManual2.png',
