@@ -47,7 +47,7 @@ const HeroSection = () => {
             variants={fadeUp}
             className="text-lg md:text-xl text-text-muted max-w-2xl leading-relaxed"
           >
-            Nos especializamos en arquitectar e implementar soluciones de software escalables. Obsesionados con la accesibilidad, las transiciones fluidas y el excelente rendimiento bajo el capó.
+            Especialistas en crear software que escala sin romperse. Nuestra obsesión es el rendimiento: transiciones que fluyen, accesibilidad real y una arquitectura impecable que no se ve, pero se nota. Hacemos que lo complejo parezca fácil.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 pt-4 w-full lg:w-auto">

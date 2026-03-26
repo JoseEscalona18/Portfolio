@@ -29,7 +29,7 @@ const AboutSection = () => {
                 Somos un grupo multidisciplinario. Nuestra pasión es transformar conceptos en productos digitales.
               </p>
               <p className="text-lg text-text-muted leading-relaxed">
-                No se trata solo de hacer que los sistemas funcionen, sino de construir infraestructuras que respiren y se sientan premium para el usuario, manteniendo arquitecturas impecables.
+                Construimos el motor que impulsa grandes ideas. Nuestro compromiso es crear infraestructuras donde la eficiencia y la arquitectura impecable no sean una opción, sino el estándar para sistemas que respiran estabilidad y rendimiento.
               </p>
 
               <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-6">
@@ -38,7 +38,7 @@ const AboutSection = () => {
                   <p className="text-sm text-text-muted mt-1">Años experiencia</p>
                 </div>
                 <div>
-                  <h4 className="text-4xl font-display font-bold text-white">10+</h4>
+                  <h4 className="text-4xl font-display font-bold text-white">3+</h4>
                   <p className="text-sm text-text-muted mt-1">Proyectos finales</p>
                 </div>
               </div>

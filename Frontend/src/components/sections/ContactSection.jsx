@@ -104,7 +104,7 @@ const ContactSection = () => {
             <div>
               <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">¿Hablamos?</h2>
               <p className="text-lg text-text-muted leading-relaxed max-w-md">
-                Estamos a tu entera disposición para el desarrollo de proyectos a medida, soporte corporativo o analizar el diseño tecnológico de tu producto tecnológico.
+                Estamos a tu entera disposición para el desarrollo de proyectos a medida, soporte corporativo o analizar el diseño tecnológico de tu producto.
               </p>
             </div>
 
