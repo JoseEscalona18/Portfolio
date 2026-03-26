@@ -28,7 +28,7 @@ export const experiences = [
     contact: '+584146528096',
     web: 'https://holanet.com.ve',
     address: 'Av. Bolivar con Calle 5, Edif. Macova planta baja, Local S/N, Valera, Trujillo, Venezuela',
-    companyLogo: '/public/Compañias/Holanet.jpg',
+    companyLogo: '/Compañias/Holanet.jpg',
     role: 'Ingenieros en Tecnologías de la Información (TI)',
     period: '',
     description: 'Desarrollo de infraestructuras críticas, incluyendo la interconexión con el sistema Biopago del Banco de Venezuela. Lideramos un ecosistema de Backend robusto y de microservicios con altísima disponibilidad para facturación y reporte de pagos de miles de clientes. Trabajamos con automatización de servicios, desarrollo de software empresarial y soluciones con IA.',
